@@ -11,6 +11,7 @@ public class AtomicIntegerOnly {
     private static volatile Boolean flag = true;
 
     public static void main(String[] args) {
+
         ExecutorService executorService = Executors.newCachedThreadPool();
 
         executorService.execute(()->{

@@ -7,76 +7,76 @@ package dataStructure;
 // 获取 key 对应的 val，如果 key 不存在则返回 -1。
 
 
+import java.util.ArrayDeque;
 import java.util.HashMap;
+import java.util.Map;
 
 //采用哈希链表 ，哈希表决定查找速度是O(1)，双链表决定删除插入速度是O(1)，另外链表中
 //的数据必须有序。
+
+//Q:为什么要在链表中同时存储 key 和 val，而不是只存储 val?
+//A:当缓存容量已满，我们不仅仅要删除最后一个 Node 节点，还要
+// 把 map 中映射到该节点的 key 同时删除，而这个 key 只能由 Node
+// 得到。如果 Node 结构中只存储 val，那么我们就无法得知 key 是
+// 什么，就无法删除 map 中的键，造成错误。
 public class LRU {
 
-    private HashMap<Integer,Node> map;
-    private DoubleList cache;
-    private int capacity;
+    Map<Integer,Node> map;
+    ArrayDeque<Node> cache;
+    int capacity;
 
-    public LRU(int capacity){
+    public LRU(int capacity) {
         this.capacity = capacity;
         map = new HashMap<>();
-        cache = new DoubleList();
+        cache = new ArrayDeque<>();
     }
 
-    public int get(int key){
+    public int get(int key) {
         if(!map.containsKey(key)){
             return -1;
         }
-        int val = map.get(key).val;
-        put(key,val);
-        return val;
+        Node node = map.get(key);
+        int value = node.value;
+        put(key,value);
+        return value;
     }
 
-    //Q:为什么要在链表中同时存储 key 和 val，而不是只存储 val?
-    //A:当缓存容量已满，我们不仅仅要删除最后一个 Node 节点，还要
-    // 把 map 中映射到该节点的 key 同时删除，而这个 key 只能由 Node
-    // 得到。如果 Node 结构中只存储 val，那么我们就无法得知 key 是
-    // 什么，就无法删除 map 中的键，造成错误。
-
-    public void put(int k,int v){
-        Node newNode = new Node(k,v);
-
-        if(map.containsKey(k)){
-            cache.remove(map.get(k));
+    public void put(int key, int value) {
+        Node newNode = new Node(key,value);
+        if(map.containsKey(key)){
+            cache.remove(map.get(key));
             cache.addFirst(newNode);
-
-            map.put(k,newNode);
+            map.put(key,newNode);
         }else{
-            if(capacity == cache.size()){
+            if(cache.size() == capacity){
                 Node oldNode = cache.removeLast();
                 map.remove(oldNode.key);
             }
             cache.addFirst(newNode);
-            map.put(k,newNode);
-        }
-    }
-
-    private static class DoubleList{
-        //省略双链表的实现
-        public void addFirst(Node x){
-        }
-        public void remove(Node x) {
-        }
-        public Node removeLast(){
-            return null;
-        }
-        public int size(){
-            return 0;
+            map.put(key,newNode);
         }
     }
 
     private static class Node{
-        //双向链表节点的定义
-        public int key,val;
-        public Node prev,next;
-        public Node(int k,int v){
-            this.key = k;
-            this.val = v;
+        public int key;
+        public int value;
+        public Node pre;
+        public Node next;
+        public Node(int key,int value){
+            this.key = key;
+            this.value = value;
         };
+    }
+
+    public static void main(String[] args) {
+        LRU lru = new LRU(3);
+        lru.put(1,10);
+        lru.put(2,20);
+        lru.put(3,30);
+        System.out.println(lru.get(1));
+        lru.put(5,50);
+        System.out.println(lru.get(2));
+        lru.put(4,40);
+        System.out.println(lru.get(3));
     }
 }

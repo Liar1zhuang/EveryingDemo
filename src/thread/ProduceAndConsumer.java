@@ -7,13 +7,15 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 //生产者消费者模型
 public class ProduceAndConsumer {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         LinkedBlockingQueue<Integer> queue = new LinkedBlockingQueue<>();
         LinkedList linkedlist = new LinkedList();
-        ExecutorService executor = Executors.newFixedThreadPool(10);
+//        ExecutorService executor = Executors.newFixedThreadPool(10);
 
 
+
+        Thread t1 = new Thread(new BConsumer(queue));
+        Thread t2 = new Thread(new BProducer(queue));
 //        for(int i = 0;i < 5;i++)
 //        {
 //            executor.submit(new ProducerA(linkedlist,8));
@@ -24,13 +26,14 @@ public class ProduceAndConsumer {
 //            executor.submit(new ConsumerA(linkedlist));
 //        }
 
-        for(int i = 0;i < 5;i++)
-        {
-            executor.submit(new BProducer(queue));
-        }
-        for(int i = 0;i < 10;i++)
-        {
-            executor.submit(new BConsumer(queue));
-        }
+//线程池创建线程
+//        for(int i = 0;i < 5;i++)
+//        {
+//            executor.submit(new BProducer(queue));
+//        }
+//        for(int i = 0;i < 10;i++)
+//        {
+//            executor.submit(new BConsumer(queue));
+//        }
     }
 }
