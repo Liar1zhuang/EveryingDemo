@@ -70,7 +70,28 @@ public class FuckCode {
             return s1.length()-s2.length();
         });
 
+        //并发编程工具：信号量
         Semaphore semaphore = new Semaphore(0);
+
+        //常量池和堆
+        String a = "abc";
+
+        String b = new String("abc");
+//        System.out.println(a == b.intern());
+
+        Object o = new Object();
+
+        char[] s = new char[2];
+        s[0] = 'a';
+        s[1] = 'c';
+        System.out.println(s[1]-s[0]);
+
+        Stack<Integer> stack = new Stack<>();
+        stack.push(1);
+        stack.indexOf(1,1);
+
+
+        ArrayDeque<Integer> newStack = new ArrayDeque<>();
 
 
     }

@@ -16,6 +16,8 @@ public class ProduceAndConsumer {
 
         Thread t1 = new Thread(new BConsumer(queue));
         Thread t2 = new Thread(new BProducer(queue));
+        t1.start();
+        t2.start();
 //        for(int i = 0;i < 5;i++)
 //        {
 //            executor.submit(new ProducerA(linkedlist,8));

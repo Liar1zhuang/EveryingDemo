@@ -12,14 +12,16 @@ public class BProducer implements Runnable {
 
     @Override
     public void run() {
-        try {
-            Random random = new Random();
-            Integer i = random.nextInt();
-            System.out.println("生产者" + Thread.currentThread().getName() + "生产数据" + i);
-            queue.put(i);
+        while(true){
+            try {
+                Random random = new Random();
+                Integer i = random.nextInt();
+                System.out.println("生产者" + Thread.currentThread().getName() + "生产数据" + i);
+                queue.put(i);
 
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

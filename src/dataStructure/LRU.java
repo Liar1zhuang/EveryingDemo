@@ -21,10 +21,12 @@ import java.util.Map;
 // 什么，就无法删除 map 中的键，造成错误。
 public class LRU {
 
+    //成员变量
     Map<Integer,Node> map;
     ArrayDeque<Node> cache;
     int capacity;
 
+    //构造函数
     public LRU(int capacity) {
         this.capacity = capacity;
         map = new HashMap<>();
@@ -35,19 +37,24 @@ public class LRU {
         if(!map.containsKey(key)){
             return -1;
         }
+        //先根据key从map中查到value
         Node node = map.get(key);
         int value = node.value;
+        //再重新添加进去，即放到链头
         put(key,value);
         return value;
     }
 
     public void put(int key, int value) {
+
         Node newNode = new Node(key,value);
+        //元素已存在时先移除后加入
         if(map.containsKey(key)){
             cache.remove(map.get(key));
             cache.addFirst(newNode);
             map.put(key,newNode);
         }else{
+            //不存在的时候需要先进行容量检查
             if(cache.size() == capacity){
                 Node oldNode = cache.removeLast();
                 map.remove(oldNode.key);

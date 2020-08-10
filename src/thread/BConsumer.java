@@ -10,12 +10,14 @@ public class BConsumer implements Runnable {
     }
     @Override
     public void run() {
-        try {
-            int element = (Integer) queue.take();
-            System.out.println("消费者" + Thread.currentThread().getName() + "正在消费数据" + element);
+        while(true){
+            try {
+                int element = (Integer) queue.take();
+                System.out.println("消费者" + Thread.currentThread().getName() + "正在消费数据" + element);
 
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
