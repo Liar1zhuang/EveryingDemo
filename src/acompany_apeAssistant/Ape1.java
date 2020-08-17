@@ -1,4 +1,4 @@
-package apeAssistant;
+package acompany_apeAssistant;
 
 import java.util.Scanner;
 //小猿老师击鼓传花

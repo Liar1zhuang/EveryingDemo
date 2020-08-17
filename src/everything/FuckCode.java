@@ -73,25 +73,31 @@ public class FuckCode {
         //并发编程工具：信号量
         Semaphore semaphore = new Semaphore(0);
 
-        //常量池和堆
+        //常量池和堆，intern()方法会检查常量池中是否已有该常量，便直接引用常量池中的值，以便减少对象的创建（享元模式）
+        //享元模式：主要减少创建对象的数量，以减少内存的占用、提高性能，属于结构型模式
+        //应用实例：1、Java中的String，如果有则返回，没有则创建一个字符串保存在字符串缓冲池中 2、数据库中的数据池
         String a = "abc";
-
         String b = new String("abc");
-//        System.out.println(a == b.intern());
+        System.out.println(a == b.intern());
 
         Object o = new Object();
 
         char[] s = new char[2];
         s[0] = 'a';
         s[1] = 'c';
-        System.out.println(s[1]-s[0]);
+//        System.out.println(s[1]-s[0]);
 
         Stack<Integer> stack = new Stack<>();
         stack.push(1);
         stack.indexOf(1,1);
 
 
+        //官方建议stack用ArrayDeque接口实现
         ArrayDeque<Integer> newStack = new ArrayDeque<>();
+
+        //字符转为int时自动输出ASCii码
+        int c = 'A';
+        System.out.println(c);
 
 
     }

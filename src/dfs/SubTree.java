@@ -23,6 +23,7 @@ public class SubTree {
         if(A == null){
             return false;
         }
+
         return A.val == B.val && dfs(A.left,B.left) && dfs(A.right,B.right);
     }
 }

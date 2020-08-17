@@ -1,4 +1,4 @@
-package apeAssistant;
+package acompany_apeAssistant;
 
 import java.util.*;
 

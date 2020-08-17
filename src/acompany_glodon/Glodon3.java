@@ -1,4 +1,4 @@
-package glodon;
+package acompany_glodon;
 
 import java.util.Scanner;
 

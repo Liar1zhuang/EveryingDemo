@@ -1,4 +1,4 @@
-package netEase;
+package acompany_netEase;
 
 import java.util.ArrayList;
 import java.util.Arrays;

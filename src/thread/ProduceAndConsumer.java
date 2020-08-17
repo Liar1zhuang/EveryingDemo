@@ -1,18 +1,19 @@
 package thread;
 
+import sun.nio.ch.ThreadPool;
+
 import java.util.LinkedList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
 
 //生产者消费者模型
 public class ProduceAndConsumer {
     public static void main(String[] args) {
         LinkedBlockingQueue<Integer> queue = new LinkedBlockingQueue<>();
         LinkedList linkedlist = new LinkedList();
-//        ExecutorService executor = Executors.newFixedThreadPool(10);
-
-
+        ExecutorService executor = Executors.newFixedThreadPool(10);
 
         Thread t1 = new Thread(new BConsumer(queue));
         Thread t2 = new Thread(new BProducer(queue));

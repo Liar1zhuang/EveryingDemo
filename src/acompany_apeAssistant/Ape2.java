@@ -1,4 +1,4 @@
-package apeAssistant;
+package acompany_apeAssistant;
 
 import java.util.Scanner;
 
@@ -17,7 +17,7 @@ public class Ape2 {
 //        return dfs();
 
     }
-    public static int dfs(){
+    private static int dfs(){
         return -1;
     }
 }

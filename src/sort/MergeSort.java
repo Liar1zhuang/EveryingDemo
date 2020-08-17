@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class MergeSort {
     /**
-     * 归并排序(需要重复看,有错误)
+     * 归并排序
      *
      * @param array
      * @return
@@ -38,5 +38,4 @@ public class MergeSort {
         }
         return result;
     }
-
 }
