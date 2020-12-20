@@ -1,5 +1,7 @@
 package lock;
 
+import java.util.LinkedList;
+
 public class DeadLock {
     public static void main(String[] args) {
         final Object a = new Object();

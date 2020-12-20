@@ -17,12 +17,12 @@ public class Main {
 
 //        bubbleSort(arr);
 //        selectionSort(arr);
-          arr = mergeSort(arr);
+//          arr = mergeSort(arr);
 
 //          arr = insertionSort(arr);
 //        shellSort(arr);
 //        heapSort(arr);
-//        quickSort(arr,0,arr.length-1);
+        quickSort(arr,0,arr.length-1);
 //
         for (int i : arr){
             System.out.println(i);

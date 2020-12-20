@@ -1,9 +1,6 @@
 package binaryTree;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class Traverse {
 
@@ -16,11 +13,14 @@ public class Traverse {
 //        preOrderRecursion(root);
 //        preOrderNonRecursion(root);
 //        inOrderRecursion(root);
-//        inOrderRecursion(root);
+        inOrderNonRecursion(root);
 //        postOrderRecursion(root);
 //        postOrderNonRecursion(root);
-        levelOrder(root);
+        levelOrderNonRecursion(root);
+        levelOrderRecursion(root);
     }
+
+
     //递归的前序遍历
     private static void preOrderRecursion(TreeNode root){
         if(root != null){
@@ -117,8 +117,8 @@ public class Traverse {
         }
     }
 
-    //层序遍历
-    private static void levelOrder(TreeNode root){
+    //队列层序遍历
+    private static void levelOrderNonRecursion(TreeNode root){
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
         while(!queue.isEmpty()){
@@ -133,6 +133,26 @@ public class Traverse {
                     queue.offer(node.right);
                 }
             }
+        }
+    }
+
+
+    //递归的层次遍历
+    private static List<List<Integer>> levelOrderRecursion(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+        helper(res,root,0);
+        return res;
+    }
+
+    //把层次加入递归函数
+    private static void helper(List<List<Integer>> res,TreeNode root, int i) {
+        if(root != null){
+            if(res.size() == i){
+                res.add(new ArrayList<>());
+            }
+            res.get(i).add(root.val);
+            helper(res,root.left,i+1);
+            helper(res,root.right,i+1);
         }
     }
 }

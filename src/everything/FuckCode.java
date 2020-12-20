@@ -1,8 +1,7 @@
 package everything;
 
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.Semaphore;
+import java.util.concurrent.*;
 
 public class FuckCode {
     //线程安全的ConcurrentHashMap源码
@@ -10,7 +9,6 @@ public class FuckCode {
 
     public static void main(String[] args) {
         //HashSet源码
-        Set<Integer> set = new HashSet<>();
         Map<String,String> map = new HashMap<>();
         map.getOrDefault("s",null);
 
@@ -21,7 +19,7 @@ public class FuckCode {
         LinkedHashMap<Integer,Integer> linkedHashMap = new LinkedHashMap<>();
 
         Deque<Integer> queue = new ArrayDeque<>();
-        //小根堆 优先队列源码
+        //小根堆 优先队列源码，PriorityQueue默认为小根堆
 //        PriorityQueue<Integer> smallHeap = new PriorityQueue<>((v1,v2)->v1 > v2 ? 1 : -1);
 //        PriorityQueue<Integer> smallHeap = new PriorityQueue<>((v1,v2)->v1.compareTo(v2));
         PriorityQueue<Integer> smallHeap = new PriorityQueue<>((v1,v2)->v1 - v2);
@@ -78,7 +76,9 @@ public class FuckCode {
         //应用实例：1、Java中的String，如果有则返回，没有则创建一个字符串保存在字符串缓冲池中 2、数据库中的数据池
         String a = "abc";
         String b = new String("abc");
-        System.out.println(a == b.intern());
+        String ab = new String("abc");
+//        System.out.println(a == b.intern());
+//        System.out.println(a == ab);
 
         Object o = new Object();
 
@@ -97,7 +97,36 @@ public class FuckCode {
 
         //字符转为int时自动输出ASCii码
         int c = 'A';
-        System.out.println(c);
+//        System.out.println(c);
+
+        //线程池
+        ThreadPoolExecutor threadPool;
+
+        //数组也是对象,数组长度保存在对象头
+//        System.out.println(new int[10] instanceof Object);
+
+        Hashtable<Object,Object> table;
+        Random random = new Random();
+        random.nextInt(1);//会报错，参数必须大于0
+
+        //从hashset中取出所有数据
+        Set<Integer> set = new HashSet<>();
+        set.add(1);
+        set.add(2);
+        set.add(3);
+        Iterator it = set.iterator();
+        while(it.hasNext()){
+//            System.out.println(it.next());
+        }
+
+        //StringBuilder和StringBuffer的区别：是否为线程安全，类似hashmap和hashtable，通过给方法加Synchronized
+        StringBuffer stringBuffer = new StringBuffer();
+        StringBuilder stringBuilder = new StringBuilder();
+
+        ExecutorService pool = Executors.newFixedThreadPool(2);
+
+        //ThreadLocal是一个在多线程中为每个线程创建单独的变量副本的类，即线程局部变量
+        ThreadLocal tl = new ThreadLocal();
 
 
     }

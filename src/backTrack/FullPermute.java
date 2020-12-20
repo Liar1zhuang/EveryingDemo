@@ -14,6 +14,7 @@ public class FullPermute {
     }
 
     List<List<Integer>> res = new LinkedList<>();
+
     private List<List<Integer>> permute(int[] nums){
         LinkedList<Integer> track = new LinkedList<>();
 
